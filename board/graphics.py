@@ -15,7 +15,7 @@ class GBoard:
 
     RADIUS = int(SQUARESIZE/2 - 5)
 
-    myfont = pygame.font.SysFont("monospace", 75)
+    myfont = pygame.font.SysFont("happyBirthday.ttf", 75)
 
     def __init__(self, board):
         self.width = board.COLUMN_COUNT * self.SQUARESIZE
@@ -51,7 +51,7 @@ class GBoard:
         pygame.draw.circle(self.screen, colour, params, radius)
 
     def write_on_board(self, text, color, posx, posy, fontsize, inCenter = False):
-        textfont = pygame.font.SysFont("inkfree", fontsize)
+        textfont = pygame.font.SysFont("happyBirthday.ttf", fontsize)
         text_surface = textfont.render(text, True, color)
         if(inCenter):
             text_position = text_surface.get_rect(center = (posx, posy))
@@ -64,7 +64,7 @@ class GBoard:
         screen.blit(button['text surface'], button['text rectangle'])
 
     def create_button(self, posx, posy, width, height, label, callback, optional_arguments = None):
-        textfont = pygame.font.SysFont("inkfree", 25)
+        textfont = pygame.font.SysFont("happyBirthday.ttf", 25)
         text_surface = textfont.render(label, True, self.WHITE)
 
         button_position = pygame.Rect(posx, posy, width, height)

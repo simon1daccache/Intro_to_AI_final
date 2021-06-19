@@ -8,6 +8,7 @@ import time
 from board import *
 from bots import *
 
+
 #pygame version number and welcome message hidden.
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
@@ -99,16 +100,16 @@ def connect4(p1, p2, ui=True):
 		if game_over:
 			pygame.time.wait(1000)
 
-			print("\nPlayer 1 Gameover")
+			print("\nPlayer 1")
 			print("TIME: " + "{:.2f}".format(round(time_p1, 2)) + " seconds")
 			print("MOVES: "+ str(moves_count_p1))
 			print("\nPlayer 2")
 			print("TIME: " + "{:.2f}".format(round(time_p2, 2)) + " seconds")
 			print("MOVES: "+ str(moves_count_p2))
-
-			sys.exit()
+            #os.execl(sys.sys.executable,sys.executable,* sys.argv)
+			os.execl(sys.executable,sys.executable,* sys.argv)
 
 
 if __name__ == "__main__":
-	print()
+	
 	print("use the file 'game.py' to start the game!")

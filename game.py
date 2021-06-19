@@ -4,7 +4,7 @@ import sys
 #pygame version number and welcome message hidden.
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-
+import time
 import pygame
 from bots import *
 from board import *
@@ -219,8 +219,10 @@ def bot_vs_bot_screen():
 
     while True:
         graphics_board.write_on_board("CONNECT 4 GAME", graphics_board.RED , 350 , 100, 40, True)
-        graphics_board.write_on_board("CHOOSE ANY TWO BOT(S) TO PLAY", graphics_board.WHITE , 350 , 175, 30, True)
-
+        graphics_board.write_on_board("CHOOSE ANY TWO BOTS TO PLAY", graphics_board.WHITE , 350 , 175, 30, True)
+        graphics_board.write_on_board(first_bot, graphics_board.WHITE , 350 , 450, 30, True)
+        graphics_board.write_on_board(second_bot, graphics_board.WHITE , 350 , 470, 30, True)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -235,6 +237,7 @@ def bot_vs_bot_screen():
                                 button['callback']()
             
             elif event.type == pygame.MOUSEMOTION:
+                
                 for button in button_list:
                     if button['button position'].collidepoint(event.pos):
                         button['color'] = graphics_board.RED
@@ -245,6 +248,7 @@ def bot_vs_bot_screen():
             graphics_board.draw_button(button, graphics_board.screen)
 
         pygame.display.update()
+        
 
 if __name__ == '__main__':
     main()
