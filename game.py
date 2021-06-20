@@ -1,3 +1,5 @@
+#importing libraries
+
 import argparse
 import sys
 
@@ -35,7 +37,7 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
-
+#main function of the game
 def main(first_player = None, second_player = None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--p1', help='Player 1 type (default Human)', type=str)
@@ -97,22 +99,22 @@ def main(first_player = None, second_player = None):
         exit(1)
 
     connect4(p1, p2, args.ui)
-
+#main screen of the game function
 def main_screen():
     pygame.init()
-    pygame.display.set_caption("Connect Four | AI Project")
+    pygame.display.set_caption("Connect 4 | AI Final Project")
     # board = Board(1)
     graphics_board = GBoard(board)
 
     def human_vs_human():
         main("human", "human")
 
-    #player_vs_player_button = graphics_board.create_button(60, 220, 300, 40, 'PLAYER VS PLAYER', human_vs_human)
+   #create buttons of the type of game
     player_vs_bot_button = graphics_board.create_button(60, 280, 300, 40, 'PLAYER VS BOT', bot_vs_human_screen)
     bot_vs_bot_button = graphics_board.create_button(60, 340, 300, 40, 'BOT VS BOT', bot_vs_bot_screen)
     quit_button = graphics_board.create_button(60, 600, 100, 40, 'QUIT', sys.exit)
 
-    #button_list = [player_vs_player_button, player_vs_bot_button, bot_vs_bot_button, quit_button]
+   #place the buttons in a list
     button_list = [player_vs_bot_button, bot_vs_bot_button, quit_button]
 
     while True:
@@ -140,21 +142,21 @@ def main_screen():
             graphics_board.draw_button(button, graphics_board.screen)
 
         pygame.display.update()
-
+# function to play human vs bot
 def bot_vs_human_screen():
     pygame.init()
     # board = Board(1)
     graphics_board = GBoard(board)
-
+    #play game using minmax algorithm
     def human_vs_minimax():
         main("human", "minimax")
-
+    #play game using expectimax algorithm
     def human_vs_expectimax():
         main("human", "expectimax")
-    
+    #play game using montecarlo algorithm
     def human_vs_montecarlo():
         main("human", "montecarlo")
-
+    #creating the buttons of the type of algrithm to play with
     minimax_button = graphics_board.create_button(60, 220, 400, 40, '1. MINIMAX BOT', human_vs_minimax)
     expectimax_button = graphics_board.create_button(60, 280, 400, 40, '2. EXPECTIMAX BOT', human_vs_expectimax)
     montecarlo_button = graphics_board.create_button(60, 340, 400, 40, '3. MONTECARLO SEARCH BOT', human_vs_montecarlo)
@@ -189,14 +191,14 @@ def bot_vs_human_screen():
             graphics_board.draw_button(button, graphics_board.screen)
 
         pygame.display.update()
-
+#play bot vs bot function
 def bot_vs_bot_screen():
     pygame.init()
     # board = Board(1)
     graphics_board = GBoard(board)
 
     first_bot = second_bot = None
-
+    #function to choose each bot algorithm type
     def bots_to_play_against(bot_to_play):
         nonlocal first_bot, second_bot
 
@@ -207,17 +209,18 @@ def bot_vs_bot_screen():
 
         if first_bot != None and second_bot != None:
             main(first_bot, second_bot)
-
+        #creating the algorithm type button
     minimax_button = graphics_board.create_button(60, 220, 400, 40, '1. MINIMAX BOT',  bots_to_play_against, ("minimax"))
     expectimax_button = graphics_board.create_button(60, 280, 400, 40, '2. EXPECTIMAX BOT', bots_to_play_against, ("expectimax"))
     montecarlo_button = graphics_board.create_button(60, 340, 400, 40, '3. MONTECARLO SEARCH BOT', bots_to_play_against, ("montecarlo"))
     
     back_button = graphics_board.create_button(60, 600, 100, 40, 'BACK', main_screen)
     quit_button = graphics_board.create_button(180, 600, 100, 40, 'QUIT', sys.exit)
-
+    #list of the buttons
     button_list = [minimax_button, expectimax_button, montecarlo_button, back_button, quit_button]
 
     while True:
+        #creating the design of the page
         graphics_board.write_on_board("CONNECT 4 GAME", graphics_board.RED , 350 , 100, 40, True)
         graphics_board.write_on_board("CHOOSE ANY TWO BOTS TO PLAY", graphics_board.WHITE , 350 , 175, 30, True)
         graphics_board.write_on_board(first_bot, graphics_board.WHITE , 350 , 450, 30, True)
